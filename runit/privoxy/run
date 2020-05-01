@@ -1,0 +1,14 @@
+#!/bin/bash
+
+exec 2>&1
+
+PRIVOXY_CONFIG="${CONFIG_DIR}/privoxy"
+proxy_config_file="${PRIVOXY_CONFIG}/privoxy.conf"
+
+if [[ -e "${proxy_config_file}" ]]; then
+    echo "starting privoxy;..."
+    exec chpst -u privoxy privoxy
+else
+    echo "Error: PRIVOXY_CONFIG is empty, exit!"
+    exit 1
+fi
